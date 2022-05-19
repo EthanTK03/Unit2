@@ -1,0 +1,36 @@
+Checklist(*** is done, % is incomplete):
+*** 1. Drawings are complete. The man is there and he is hangin ***
+% 2. Information section (dropdown list box)
+% 3. Typing box for guessing a letter (lineedit widget)
+% 4. Display of the word/underscores of the word (QLabel)
+% 5. Correct guesses changing corresponding underscore into the guessed letter
+% 6. Incorrect guesses adding 1 new body part to the hangman (Initially no parts displayed)
+% 7. Incorrect guesses going up to 6 maximum, ending the game after and revealing the word.
+% 8. After game ends: 
+    % Asks player to play again
+    % Asks players to watch the replay of your game
+    %Allows you to access previous replays and pause them (click a button, brings you to new window 
+        displaying each replayas "game1", "game4", and so on as buttons. click one and watch the replay, 
+        afterwards it goes back to the replay menu)
+
+
+The project:
+    1. Be able to play through the entirety of hangman game, replay it, etc
+    2. Create a pop-up window to play the game, a text box allowing you to enter any letter
+        - Allow specialized error message if an unrecognized character or string of charactrs
+        is entered, keep the game running without consequences
+    3. Display a word blanked out for each character ('_ _ _'), fill it out for each correct guess
+    4. After each incorrect guess, draw a part of the hanging man
+        - First a circle for the head. then a line for the body, then each individual limb.
+        - Have the hanging stand drawn before the game begins
+    5. When game is finished, ask user to play again, watch replay, or end the session.
+
+    Record all events that occur in the game, allow a "replay" program to go through 
+    everything that happened with a set amiunt of time between each event. 
+        - Make a pause/play button for during the replay
+
+From last Wednesday: 
+# Think about your current project, and a collection of things. 
+# Use the example above(dic2.py) as a starting point, and put your items in a dictionary 
+# (you'll need to decide on a unique key). 
+# Using the example code, let the user type in the id so they can get the data.
