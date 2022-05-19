@@ -1,12 +1,15 @@
-Checklist(*** is done, % is incomplete):
-*** 1. Drawings are complete. The man is there and he is hangin ***
-% 2. Information section (dropdown list box)
-% 3. Typing box for guessing a letter (lineedit widget)
-% 4. Display of the word/underscores of the word (QLabel)
+Checklist(* is done, % is incomplete):
+* 1. Drawings are complete. The man is there and he is hangin *
+*%% 2. Choose a file (dropdown list box)
+        * Make dropdown list *
+        % Make list display each file
+        % Make a button to confirm selection, then start the game (display word to be guessed)
+% 3. Display of the word/underscores of the word (QLabel)
+% 4. Typing box for guessing a letter (lineedit widget)
 % 5. Correct guesses changing corresponding underscore into the guessed letter
 % 6. Incorrect guesses adding 1 new body part to the hangman (Initially no parts displayed)
 % 7. Incorrect guesses going up to 6 maximum, ending the game after and revealing the word.
-% 8. After game ends: 
+%%% 8. After game ends: 
     % Asks player to play again
     % Asks players to watch the replay of your game
     %Allows you to access previous replays and pause them (click a button, brings you to new window 

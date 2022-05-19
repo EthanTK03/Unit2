@@ -10,9 +10,24 @@ class MainWindow(QWidget):
         self.resize(500,500)
         self.setWindowTitle("HANGMAN")
 
+        #Display the word
+        #Choose a file
         self.display = QLabel(self)
-        self.display.setText("¡Hola Mundo!")
-        self.display.move(50,20)
+        self.display.setText("Choose a Subject")
+        self.display.move(280,330)
+
+        font = QFont()
+        font.setFamily('Calibri')
+        font.setPointSize(16)
+        self.display.setFont(font)
+
+        self.comboBox = QComboBox(self) #Create the comboBox
+        self.comboBox.setGeometry(QRect(280,375,150,25)) #Set it's position and size (x,y,width,height)
+        
+        self.comboBox.addItem("Item 1")
+        self.comboBox.addItem("Item 2")
+        self.comboBox.addItem("Item 3")
+
         # self.game = Game()
 
     #respond to paint events
