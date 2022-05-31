@@ -14,20 +14,37 @@ class MainWindow(QWidget):
         #Choose a file
         self.display = QLabel(self)
         self.display.setText("Choose a Subject")
-        self.display.move(280,330)
+        self.display.move(280,320)
 
         font = QFont()
         font.setFamily('Calibri')
-        font.setPointSize(16)
+        font.setPointSize(14)
         self.display.setFont(font)
 
         self.comboBox = QComboBox(self) #Create the comboBox
-        self.comboBox.setGeometry(QRect(280,375,150,25)) #Set it's position and size (x,y,width,height)
+        self.comboBox.setGeometry(QRect(280,350,150,25)) #Set it's position and size (x,y,width,height)
         
         self.comboBox.addItem("Item 1")
         self.comboBox.addItem("Item 2")
         self.comboBox.addItem("Item 3")
 
+        self.textbox = QLineEdit(self)
+        self.textbox.move(290,425)
+        self.textbox.resize(80,30)
+
+        self.display2 = QLabel(self)
+        self.display2.setText("Guess a Letter")
+        self.display2.move(300,400)
+
+        font2 = QFont()
+        font2.setFamily('Calibri')
+        font2.setPointSize(14)
+        self.display2.setFont(font)
+
+        self.btn = QPushButton(self)
+        self.btn.move(370,424)
+        self.btn.resize(50,32)
+        self.btn.setText("Submit")
         # self.game = Game()
 
     #respond to paint events
