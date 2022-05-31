@@ -15,19 +15,21 @@ class MainWindow(QWidget):
         self.display = QLabel(self)
         self.display.setText("Choose a Subject")
         self.display.move(280,320)
-
+        #Font for message 1
         font = QFont()
         font.setFamily('Calibri')
         font.setPointSize(14)
         self.display.setFont(font)
 
+        #Choose a subject (dropdown box)
         self.comboBox = QComboBox(self) #Create the comboBox
         self.comboBox.setGeometry(QRect(280,350,150,25)) #Set it's position and size (x,y,width,height)
-        
+        #Subjects to choose from
         self.comboBox.addItem("Item 1")
         self.comboBox.addItem("Item 2")
         self.comboBox.addItem("Item 3")
 
+        #Input a letter
         self.textbox = QLineEdit(self)
         self.textbox.move(290,425)
         self.textbox.resize(80,30)
@@ -35,12 +37,13 @@ class MainWindow(QWidget):
         self.display2 = QLabel(self)
         self.display2.setText("Guess a Letter")
         self.display2.move(300,400)
-
+        #Font for message 2
         font2 = QFont()
         font2.setFamily('Calibri')
         font2.setPointSize(14)
         self.display2.setFont(font)
 
+        #Submit guess (button)
         self.btn = QPushButton(self)
         self.btn.move(370,424)
         self.btn.resize(50,32)
