@@ -1,5 +1,6 @@
 import sys
 import random
+import os
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -25,9 +26,12 @@ class MainWindow(QWidget):
         self.comboBox = QComboBox(self) #Create the comboBox
         self.comboBox.setGeometry(QRect(280,350,150,25)) #Set it's position and size (x,y,width,height)
         #Subjects to choose from
-        self.comboBox.addItem("Item 1")
-        self.comboBox.addItem("Item 2")
-        self.comboBox.addItem("Item 3")
+        files = [f for f in os.listdir(".") if f.endswith(".txt")]
+        for f in files:
+            self.comboBox.addItem(f)
+        # comboBox.onClick.getComponent("comboBox").getValue()
+        self.comboBox.currentIndexChanged(self.selectionchange) #selectionchange is a function to be written
+        comboBox.currentText() #Will give the selected file
 
         #Input a letter
         self.textbox = QLineEdit(self)
