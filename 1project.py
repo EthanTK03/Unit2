@@ -14,7 +14,7 @@ class MainWindow(QWidget):
         #Display the word
         #Choose a file
         self.display = QLabel(self)
-        self.display.setText("Choose a Subject")
+        self.display.setText("Choose a File/Subject")
         self.display.move(280,320)
         #Font for message 1
         font = QFont()
@@ -25,13 +25,18 @@ class MainWindow(QWidget):
         #Choose a subject (dropdown box)
         self.comboBox = QComboBox(self) #Create the comboBox
         self.comboBox.setGeometry(QRect(280,350,150,25)) #Set it's position and size (x,y,width,height)
+        # self.comboBox.activated.connect(self.react)
+       
         #Subjects to choose from
-        files = [f for f in os.listdir(".") if f.endswith(".txt")]
-        for f in files:
+        self.files = [f for f in os.listdir(".") if f.endswith(".txt")]
+        for f in self.files:
             self.comboBox.addItem(f)
-        # comboBox.onClick.getComponent("comboBox").getValue()
-        self.comboBox.currentIndexChanged(self.selectionchange) #selectionchange is a function to be written
-        comboBox.currentText() #Will give the selected file
+        self.comboBox.activated.connect(self.activated)
+        
+        # # comboBox.onClick.getComponent("comboBox").getValue()
+        # self.comboBox.currentIndexChanged(self.selectionchange) #selectionchange is a function to be written
+        # comboBox.currentText() #Will give the selected file
+
 
         #Input a letter
         self.textbox = QLineEdit(self)
@@ -46,6 +51,14 @@ class MainWindow(QWidget):
         font2.setFamily('Calibri')
         font2.setPointSize(14)
         self.display2.setFont(font)
+
+        self.displayword = QLabel(self)
+        self.displayword.setText('_____________________')
+        self.displayword.move(50,435)
+        font3 = QFont()
+        font3.setFamily('Calibri')
+        font3.setPointSize(14)
+        self.displayword.setFont(font3)
 
         #Submit guess (button)
         self.btn = QPushButton(self)
@@ -81,7 +94,19 @@ class MainWindow(QWidget):
 
         #Info text
 
+    def activated(self):
+        file = self.files[self.comboBox.currentIndex()]
+        # open file and get random word
+        # set that word to self.display3
+        text = []
+        wordfile = open(file)
+        for line in wordfile:
+            text.append(line.strip().lower())
+        print(len(text))
+        ran = random.randrange(0,len(text))
+        print(text[ran])
 
+        self.displayword.setText(text[ran])
 
 
 
