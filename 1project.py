@@ -108,24 +108,20 @@ class MainWindow(QWidget):
 
         self.displayword.setText(text[ran])
 
+        #Supposed to change the word into underscores 
+        #(Original: both changed to underscores and revealed part of word)
         # for c in text[ran]:
         #     if c in choice:
         #         self.text.setText(c + ' ', end = '')
         #     else:
         #         self.text.setText('_ ', end = '')
 
-        self.btn.clicked.connect(self.textbox)
+        #Guess Letter, reveal part of word
+        self.btn.clicked.connect(self.getLetter)
         print()
     def getLetter(self):
         choice = self.textbox.text()
-        print(choice)
-
-        # def getlogin(self):
-        # username = self.txtLogin.text()
-        # pwd = self.txtPwd.text()
-        # print(username + ": " + pwd)
-
-
+        print(choice) #This is where I change the underscore to the letter if guessed correctly
 
 
 def main():
