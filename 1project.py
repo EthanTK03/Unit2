@@ -108,6 +108,24 @@ class MainWindow(QWidget):
 
         self.displayword.setText(text[ran])
 
+        # for c in text[ran]:
+        #     if c in choice:
+        #         self.text.setText(c + ' ', end = '')
+        #     else:
+        #         self.text.setText('_ ', end = '')
+
+        self.btn.clicked.connect(self.textbox)
+        print()
+    def getLetter(self):
+        choice = self.textbox.text()
+        print(choice)
+
+        # def getlogin(self):
+        # username = self.txtLogin.text()
+        # pwd = self.txtPwd.text()
+        # print(username + ": " + pwd)
+
+
 
 
 def main():
