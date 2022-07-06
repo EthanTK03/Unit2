@@ -67,6 +67,10 @@ class MainWindow(QWidget):
         self.btn.setText("Submit")
         # self.game = Game()
 
+        self.chosenWord = ''
+        self.guesses = []
+
+
     #respond to paint events
     def paintEvent(self, event):
         qp = QPainter(self)
@@ -104,9 +108,11 @@ class MainWindow(QWidget):
             text.append(line.strip().lower())
         print(len(text))
         ran = random.randrange(0,len(text))
+        self.chosenWord = text[ran]
         print(text[ran])
+        self.guesses = []
 
-        self.displayword.setText(text[ran])
+        # self.displayword.setText(text[ran])
 
         #Supposed to change the word into underscores 
         #(Original: both changed to underscores and revealed part of word)
@@ -121,8 +127,17 @@ class MainWindow(QWidget):
         print()
     def getLetter(self):
         choice = self.textbox.text()
-        print(choice) #This is where I change the underscore to the letter if guessed correctly
+        self.guesses.append(choice)
+        # self.comboBox.activated.connect(self.react)
 
+        print(choice) #This is where I change the underscore to the letter if guessed correctly
+        disp = ''
+        for c in self.chosenWord:
+            if c in self.guesses:
+                disp = disp + c + ' '
+            else:
+                disp = disp + '_ '
+        self.displayword.setText(disp)
 
 def main():
     app = QApplication(sys.argv)
