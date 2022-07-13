@@ -69,6 +69,7 @@ class MainWindow(QWidget):
 
         self.chosenWord = ''
         self.guesses = []
+        self.misses = 0
 
 
     #respond to paint events
@@ -89,14 +90,26 @@ class MainWindow(QWidget):
         qp.drawLine(colsize*12,rowsize*12,colsize*18,rowsize*12)
 
         #The hanging man, 6 body parts
-        qp.drawEllipse(9*colsize, 4*rowsize, colsize*2, rowsize*2) #head
-        qp.drawLine(colsize*10,rowsize*6,colsize*10,rowsize*9) #body
-        qp.drawLine(colsize*10,rowsize*7,colsize*12,rowsize*6) #left arm
-        qp.drawLine(colsize*10,rowsize*7,colsize*8,rowsize*6) #right arm
-        qp.drawLine(colsize*10,rowsize*9,colsize*11,rowsize*11) #left leg
-        qp.drawLine(colsize*10,rowsize*9,colsize*9,rowsize*11) #right leg
-
-        #Info text
+        if self.misses >= 1:
+            b1 = qp.drawEllipse(9*colsize, 4*rowsize, colsize*2, rowsize*2) #head
+        if self.misses >= 2:
+            b2 = qp.drawLine(colsize*10,rowsize*6,colsize*10,rowsize*9) #body
+        if self.misses >= 3:
+            b3 = qp.drawLine(colsize*10,rowsize*7,colsize*12,rowsize*6) #left arm
+        if self.misses >= 4:
+            b4 = qp.drawLine(colsize*10,rowsize*7,colsize*8,rowsize*6) #right arm
+        if self.misses >= 5:
+            b5 = qp.drawLine(colsize*10,rowsize*9,colsize*11,rowsize*11) #left leg
+        if self.misses >= 6:
+            b6 = qp.drawLine(colsize*10,rowsize*9,colsize*9,rowsize*11) #right leg
+        #     #Lose Message
+        #     self.display4 = QLabel(self)
+        #     self.display4.setText("It's too late for him")
+        #     self.display4.move(100,100)
+            # font4 = QFont()
+            # font4.setFamily('Calibri')
+            # font4.setPointSize(14)
+            # self.display2.setFont(font4)
 
     def activated(self):
         file = self.files[self.comboBox.currentIndex()]
@@ -111,6 +124,8 @@ class MainWindow(QWidget):
         self.chosenWord = text[ran]
         print(text[ran])
         self.guesses = []
+        self.misses = 0
+        self.repaint()
 
         # self.displayword.setText(text[ran])
 
@@ -125,19 +140,63 @@ class MainWindow(QWidget):
         #Guess Letter, reveal part of word
         self.btn.clicked.connect(self.getLetter)
         print()
+
     def getLetter(self):
         choice = self.textbox.text()
+        if choice in self.guesses:
+            return
         self.guesses.append(choice)
         # self.comboBox.activated.connect(self.react)
 
         print(choice) #This is where I change the underscore to the letter if guessed correctly
         disp = ''
-        for c in self.chosenWord:
-            if c in self.guesses:
+        for c in self.chosenWord: #self.chosenWord is the random word from the selected file
+            if c in self.guesses: #c is each letter, changes to underscore initially and back when guessed
                 disp = disp + c + ' '
             else:
                 disp = disp + '_ '
         self.displayword.setText(disp)
+        self.misses = 0
+        for g in self.guesses:
+            if not g in self.chosenWord:
+                self.misses = self.misses + 1
+        self.repaint()
+
+        done = False
+        for c in self.chosenWord:
+            if not '_' in self.guesses:
+                done = True
+            if done:
+                dialog = QMessageBox()
+                dialog.setWindowTitle("Game Over")
+                dialog.setText("You've saved him!\n:)\nThank You For Playing")
+                dialog.exec()
+
+    # # show the dialog
+    #     count = 0
+    #     for c in self.chosenWord:
+    #         if c == '_':
+    #             count = count + 1
+    #     if count == 0:
+    #         dialog = QMessageBox()
+    #         dialog.setWindowTitle("Game Over")
+    #         dialog.setText("You've saved him!\n:)\nThank You For Playing")
+    #         dialog.exec()
+
+
+
+        if self.misses >= 6:
+                dialog = QMessageBox()
+                dialog.setWindowTitle("Game Over")
+                dialog.setText("There's No Saving Him Now \n:( \nThank You for Playing!")
+                dialog.exec()
+
+    def btnPressEvent(self,event):
+        if count >= 1:
+            qp.drawEllipse(9*colsize, 4*rowsize, colsize*2, rowsize*2)
+
+        if choice not in text[ran]:
+            qp.drawEllipse(9*colsize, 4*rowsize, colsize*2, rowsize*2)
 
 def main():
     app = QApplication(sys.argv)
